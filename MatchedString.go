@@ -7,14 +7,14 @@ import (
 	"time"
 	"regexp"
 	"fmt"
+	"bufio"
+	"os"
 )
 
-func ElizaResponse(input string) string{
+func ElizaResponse(inputStr string) string{
 
-	var input string
-
-	fmt.println("Please message me")
-	fmt.Scanf("%s", &input)
+	input :=inputStr
+	
 //back ticks instead of quotes to make sure it doesnt leave the characters first
 	if matched,_ := regexp.MatchString(`(?i). *\bfather\b.*`,input); matched {
 		//return the string below
@@ -23,8 +23,10 @@ func ElizaResponse(input string) string{
 
 //capture I am
 	re := regexp.MustCompile("I am ([^.!?]*)[.!?]?")
-	if re.MatchedString(input){
-		return re.ReplaceAllString(input, "How do you know you are $1?")) 
+	
+	
+	if re.MatchString(input){
+		return re.ReplaceAllString(input, "How do you know you are $1?") 
 
 	}
 
@@ -42,6 +44,11 @@ func ElizaResponse(input string) string{
 
 func main(){
 	rand.Seed(time.Now().UTC().UnixNano())//get a random number
-	ElizaResponse()
+	reader := bufio.NewReader(os.Stdin)
+	fmt.Println("Please message me")
+
+	input, _ := reader.ReadString('\n')
+	fmt.Scanf("%s", &input)
+	fmt.Println(ElizaResponse(input))
 
 }
