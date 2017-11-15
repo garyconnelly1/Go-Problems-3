@@ -22,9 +22,9 @@ func ElizaResponse(inputStr string) string{
 	}
 
 //capture I am
-	re := regexp.MustCompile("I am ([^.!?]*)[.!?]?")
+	re := regexp.MustCompile("[Ii] (?:A|a)(?:M|m) ([^.!?]*)[.!?]?")
 	
-	
+
 	if re.MatchString(input){
 		return re.ReplaceAllString(input, "How do you know you are $1?") 
 
