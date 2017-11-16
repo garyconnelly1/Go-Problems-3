@@ -48,6 +48,7 @@ func ElizaResponse(inputStr string) string{
 
 
 //part 5
+//adapted from https://gist.github.com/ianmcloughlin/c4c2b8dc586d06943f54b75d9e2250fe
 func refPro(inputStr string) string{
 	boundaries := regexp.MustCompile(`\b`)
 	tokens := boundaries.Split(inputStr, -1)
@@ -56,6 +57,7 @@ func refPro(inputStr string) string{
 	reflections := [][]string{
 		{`I`, `you`},
 		{`me`, `you`},
+		{`am`, `are`},
 		{`you`, `I`},
 		{`my`, `your`},
 		{`your`, `my`},
@@ -80,8 +82,12 @@ func refPro(inputStr string) string{
 
 
 func main(){
+	fmt.Println("===============Example of a reflection(part5).============")
+	fmt.Println("I am not sure that you understand the effect your questions are having on me.")
 	tester :=refPro("I am not sure that you understand the effect your questions are having on me.")
 	fmt.Println(tester)
+
+	fmt.Println("Now talk to Eliza.")
 	rand.Seed(time.Now().UTC().UnixNano())//get a random number
 	reader := bufio.NewReader(os.Stdin)
 	fmt.Println("Please message me")
