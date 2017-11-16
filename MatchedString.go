@@ -9,8 +9,11 @@ import (
 	"fmt"
 	"bufio"
 	"os"
+	"strings"
 	
 )
+
+
 
 func ElizaResponse(inputStr string) string{
 
@@ -26,7 +29,7 @@ func ElizaResponse(inputStr string) string{
 	re := regexp.MustCompile("[Ii] (?:A|a)(?:M|m) ([^.!?]*)[.!?]?")
 	
 
-	if re.MatchString(input){
+	if re.MatchString(input){	
 		return re.ReplaceAllString(input, "How do you know you are $1?") 
 
 	}
@@ -39,11 +42,46 @@ func ElizaResponse(inputStr string) string{
 		 "Why do you say that?",
 	}
 	//returning a single string response
-	return answers[rand.Intn(len(answers))]
+		return answers[rand.Intn(len(answers))]
 
 }
 
+
+//part 5
+func refPro(inputStr string) string{
+	boundaries := regexp.MustCompile(`\b`)
+	tokens := boundaries.Split(inputStr, -1)
+	
+	// List the reflections.
+	reflections := [][]string{
+		{`I`, `you`},
+		{`me`, `you`},
+		{`you`, `I`},
+		{`my`, `your`},
+		{`your`, `my`},
+		{`I am`,`you are`},
+	}
+	
+	// Loop through each token, reflecting it if there's a match.
+	for i, token := range tokens {
+		for _, reflection := range reflections {
+			if matched, _ := regexp.MatchString(reflection[0], token); matched {
+				tokens[i] = reflection[1]
+				
+				break
+			}
+		}
+	}
+	
+	// Put the tokens back together.
+	return strings.Join(tokens, ``)
+}
+	//end part 5
+
+
 func main(){
+	tester :=refPro("I am not sure that you understand the effect your questions are having on me.")
+	fmt.Println(tester)
 	rand.Seed(time.Now().UTC().UnixNano())//get a random number
 	reader := bufio.NewReader(os.Stdin)
 	fmt.Println("Please message me")
@@ -53,3 +91,9 @@ func main(){
 	fmt.Println(ElizaResponse(input))
 
 }
+
+//useful resource 
+// https://shapeshed.com/golang-regexp/#what-is-the-regex-package-in-go
+
+
+//I am not sure that you understand the effect your questions are having on me.
