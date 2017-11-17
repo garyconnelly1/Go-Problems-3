@@ -46,6 +46,19 @@ func ElizaResponse(inputStr string) string{
 		return re2.ReplaceAllString(input, "How long have you felt $1?") 
 
 	}
+	
+	//second pattern
+
+	//capture age
+	re3 := regexp.MustCompile("[Ii] (?:T|t)(?:U|u)(?:R|r)(?:N|n)(?:E|e)(?:D|d) ([0-9]+)[.!?]?")
+	
+
+	if re3.MatchString(input){	
+		return re3.ReplaceAllString(input, "When did you turn $1?") 
+
+	}
+
+
 
 	//end part 6
 
