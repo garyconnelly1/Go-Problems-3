@@ -61,12 +61,12 @@ func ElizaResponse(inputStr string) string{
 	//third pattern
 
 	//capture dob
-	re4 := regexp.MustCompile("[Ii] (?:W|w)(?:A|a)(?:S|s)/s(?:B|b)(?:O|o)(?:R|r)(?:N|n)/s(?:O|o)(?:N|n) /^(19|20)/d/d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$/")
+	re4 := regexp.MustCompile("[Ii] [(?:W|w)(?:A|a)(?:S|s)] [(?:B|b)(?:O|o)(?:R|r)(?:N|n)] [(?:O|o)(?:N|n)] /^(19|20)/d/d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$/")
 	
 
 	if re4.MatchString(input){	
 		return re4.ReplaceAllString(input, "Oh so your date of birth is $1?") 
-
+ 
 	}
 
 
