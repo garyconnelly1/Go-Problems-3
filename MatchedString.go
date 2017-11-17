@@ -80,6 +80,9 @@ func refPro(inputStr string) string{
 }
 	//end part 5
 
+	//part 6
+	//end part 6
+
 
 func main(){
 	fmt.Println("===============Example of a reflection(part5).============")
