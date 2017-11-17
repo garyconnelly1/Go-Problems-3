@@ -34,6 +34,21 @@ func ElizaResponse(inputStr string) string{
 
 	}
 
+	//part 6
+
+	//first pattern
+
+//capture I feel
+	re2 := regexp.MustCompile("[Ii] (?:F|f)(?:E|e)(?:E|e)(?:L|l) ([^.!?]*)[.!?]?")
+	
+
+	if re2.MatchString(input){	
+		return re2.ReplaceAllString(input, "How long have you felt $1?") 
+
+	}
+
+	//end part 6
+
 	
 
 	answers := []string{
@@ -80,8 +95,8 @@ func refPro(inputStr string) string{
 }
 	//end part 5
 
-	//part 6
-	//end part 6
+	
+	
 
 
 func main(){
